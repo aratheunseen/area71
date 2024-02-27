@@ -3,6 +3,7 @@ todos = []
 
 while True:
     command = input(prompt)
+    command = command.lower().strip()
     
     match command:
         case "add":
@@ -10,10 +11,11 @@ while True:
                 task = input("Enter a task: ")
                 todos.append(task)
 
-                if input("Add another? (yes/no) ") == "no":
+                if input("Want to exit? (y/n) ") == "n":
                     break
 
         case "show":
-            print(todos)
+            for item in todos:
+                print("-",item)
         case _:
             print("Invalid command")
