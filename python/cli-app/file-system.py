@@ -1,15 +1,33 @@
+prompt = "Type add, show, edit or complete:"
+todos = open("todos.txt").read().splitlines()
+
 while True:
-    prompt = input("Enter your todo: ")
+    user_action = input(prompt)
+    
+    match user_action:
+        case "add":
+            todo = input("Enter a task: ")
+            if todo == "done":
+                break
+            file = open("todos.txt", "a")
+            file.write(todo + "\n")
 
-    todo = open("todo.txt", "a")
-    todo.write(prompt + "\n")
-    todo.close()
+        case "show":
+            for item_id,item in enumerate(todos):
+                # print(item_id+1,"-",item)
+                print(f"{item_id+1}- {item}")
 
-    if prompt == "exit":
-        break
+        case "edit":
+            number = int(input("Enter the number of the task to edit: "))
+            existing_task = todos[number-1]
+            print("Editing task", existing_task)
+            new_task = input("Enter the new task: ")
+            todos[number-1] = new_task
 
-print("Todo added successfully!")
-print("Your todo list is: ")
-todo = open("todo.txt", "r")
-print(todo.read())
-todo.close()
+        case 'complete':
+            number = int(input("Enter the number of the task to complete: "))
+            completed_task = todos.pop(number-1)
+            print("Completed task", completed_task, ", removed from list")
+        
+        case _:
+            print("Invalid user action")
