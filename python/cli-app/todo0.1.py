@@ -18,9 +18,11 @@ while True:
                 print(item_id+1,"-",item)
 
         case "edit":
-            index = int(input("Enter the number of the task to edit: "))
+            number = int(input("Enter the number of the task to edit: "))
+            existing_task = todos[number-1]
+            print("Editing task", existing_task)
             new_task = input("Enter the new task: ")
-            todos[index-1] = new_task
+            todos[number-1] = new_task
 
         case _:
             print("Invalid command")
