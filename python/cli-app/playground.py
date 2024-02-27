@@ -18,7 +18,6 @@ while True:
         case "show":
             file = open("todos.txt","r")
             todos = file.readlines()
-            print("Your todos:")
             for id, todo in enumerate(todos):
                 print(id+1, todo.strip())
             file.close()
