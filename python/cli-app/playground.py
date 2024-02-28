@@ -1,53 +1,34 @@
-while True:
-    user_action = input("YourNote > ")
-    user_action = user_action.strip()
-    
-    if "add" in user_action or "new" in user_action:
-        todo = user_action[4:]
-    
-        with open('todos.txt', 'r') as file:
-            todos = file.readlines()
-        
-        todos.append(todo+"\n")
+# at least 8 characters with a lowercase, an uppercase and a special symbol
 
-        with open('todos.txt', 'w') as file:
-            file.writelines(todos)
+password = input("Enter new password: ")
+special_characters = "!@#$%^&*()-+?_=,<>/"
+digit = uppercase = lowercase = special_char = False
+result = []
 
-    elif "show" in user_action or "display" in user_action:
+if len(password) >= 8:
+    result.append(True)
+else:
+    result.append(False)
 
-        with open("todos.txt","r") as file:
-            todos = file.readlines()
 
-        for todo_id, todo in enumerate(todos):
-            print(todo_id+1,"-",todo.strip())
+for i in password:
+    if i.isdigit():
+        digit = True
+    if i.isupper():
+        uppercase = True
+    if i.islower():
+        lowercase = True
+    if any(char in special_characters for char in password):
+        special_char = True
 
-    elif "edit" in user_action:
-        number = int(user_action[5:7])
-        new_todo = user_action[7:]
+result.append(digit)    
+result.append(uppercase)
+result.append(lowercase)
+result.append(special_char)
 
-        with open("todos.txt","r") as file:
-            todos = file.readlines()
-        
-        todos[number-1] = new_todo + '\n'
+print(result)
 
-        with open("todos.txt","w") as file:
-            file.writelines(todos)
-
-    elif 'complete' in user_action:
-        number = int(user_action[-1:])
-        
-        with open("todos.txt","r") as file:
-            todos = file.readlines()
-
-        completed_todo = todos.pop(number-1)
-
-        with open("todos.txt","w") as file:
-            file.writelines(todos)
-        
-        print(f"{completed_todo.strip()} is removed from the todo list.")
-
-    elif 'exit' in user_action:
-        break 
-
-    else:
-        print("Invalid input.")
+if all(result):
+    print("Requrement matched")
+else:
+    print("Requrement doesn't matched")
