@@ -1,5 +1,5 @@
 while True:
-    user_action = input("YourNote > ")
+    user_action = input("YourNote> ")
     user_action = user_action.strip()
     
     if user_action.startswith("add "):
@@ -13,7 +13,7 @@ while True:
         with open('todos.txt', 'w') as file:
             file.writelines(todos)
 
-    elif user_action.startswith("show"):
+    elif user_action.startswith("show "):
 
         with open("todos.txt","r") as file:
             todos = file.readlines()
@@ -21,23 +21,19 @@ while True:
         for todo_id, todo in enumerate(todos):
             print(todo_id+1,"-",todo.strip())
 
-    elif user_action.startswith("edit "):
-        try:
-            number = int(user_action[5:7])
-            new_todo = user_action[7:]
+    elif "edit" in user_action:
+        number = int(user_action[5:7])
+        new_todo = user_action[7:]
 
-            with open("todos.txt","r") as file:
-                todos = file.readlines()
-            
-            todos[number-1] = new_todo + '\n'
+        with open("todos.txt","r") as file:
+            todos = file.readlines()
+        
+        todos[number-1] = new_todo + '\n'
 
-            with open("todos.txt","w") as file:
-                file.writelines(todos)
-                
-        except ValueError:
-            print("Invalid command.")
+        with open("todos.txt","w") as file:
+            file.writelines(todos)
 
-    elif user_action.startswith("complete"):
+    elif 'complete' in user_action:
         number = int(user_action[-1:])
         
         with open("todos.txt","r") as file:
@@ -50,7 +46,7 @@ while True:
         
         print(f"{completed_todo.strip()} is removed from the todo list.")
 
-    elif user_action.startswith("exit"):
+    elif 'exit' in user_action:
         break 
 
     else:
