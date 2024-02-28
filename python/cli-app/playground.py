@@ -4,43 +4,53 @@ while True:
     user_action = input(prompt)
     
     match user_action:
+
         case "add":
+
             todo = ""
             while todo != "q\n":
                 todo = input("Enter a todo or 'q' to quit: ") + "\n"
                 if todo == "q\n":
                     break
-                file = open("todos.txt","a+")
-                file.writelines(todo)
-                file.close()
-                print("Todo added")
+                
+                with open('todos.txt', 'r') as file:
+                    todos = file.readlines()
+                
+                todos.append(todo)
+
+                with open('todos.txt', 'w') as file:
+                    file.writelines(todos)
 
         case "show":
-            file = open("todos.txt","r")
-            todos = file.readlines()
-            for id, todo in enumerate(todos):
-                todo = todo.strip("\n")
-                print(id+1, todo)
-                # print(id+1, todo.strip())
-            file.close()
+
+            with open("todos.txt","r") as file:
+                todos = file.readlines()
+
+            for todo_id, todo in enumerate(todos):
+                print(todo_id+1, todo.strip())
 
         case "edit":
-            number = int(input("Enter the number of the task to edit: "))
-            existing_task = todos[number-1]
-            print("Editing task", existing_task)
-            new_task = input("Enter the new task: ")
-            todos[number-1] = new_task
-            file = open("todos.txt","w")
-            file.writelines(todos)
-            file.close()
+
+            number = int(input("Enter the number of the todo to edit: "))
+            todos[number-1] = input("Enter the new todo: ") + '\n'
+
+            with open("todos.txt","w") as file:
+                file.writelines(todos)
 
         case 'complete':
+
             number = int(input("Enter the number of the task to complete: "))
-            completed_task = todos.pop(number-1)
-            print("Completed task", completed_task, ", removed from list")
-        
+            
+            with open("todos.txt","r") as file:
+                todos = file.readlines()
+
+            todos.pop(number-1)
+
+            with open("todos.txt","w") as file:
+                file.writelines(todos)
+
         case 'exit':
-            break
+            break 
 
         case _:
-            print("Invalid user action.")
+            print("Invalid input.")
