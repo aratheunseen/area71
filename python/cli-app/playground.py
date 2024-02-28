@@ -44,10 +44,12 @@ while True:
             with open("todos.txt","r") as file:
                 todos = file.readlines()
 
-            todos.pop(number-1)
+            completed_todo = todos.pop(number-1)
 
             with open("todos.txt","w") as file:
                 file.writelines(todos)
+            
+            print(f"{completed_todo.strip()} is removed from the todo list.")
 
         case 'exit':
             break 
