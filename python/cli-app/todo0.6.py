@@ -1,5 +1,5 @@
 while True:
-    user_action = input("YourNote> ")
+    user_action = input("YourNote > ")
     user_action = user_action.strip()
     
     if user_action.startswith("add "):
@@ -13,7 +13,7 @@ while True:
         with open('todos.txt', 'w') as file:
             file.writelines(todos)
 
-    elif user_action.startswith("show "):
+    elif user_action.startswith("show"):
 
         with open("todos.txt","r") as file:
             todos = file.readlines()
@@ -21,32 +21,47 @@ while True:
         for todo_id, todo in enumerate(todos):
             print(todo_id+1,"-",todo.strip())
 
-    elif "edit" in user_action:
-        number = int(user_action[5:7])
-        new_todo = user_action[7:]
+    elif user_action.startswith("edit "):
+        try:
+            number = int(user_action[5:7])
+            new_todo = user_action[7:]
 
-        with open("todos.txt","r") as file:
-            todos = file.readlines()
+            with open("todos.txt","r") as file:
+                todos = file.readlines()
+            
+            todos[number-1] = new_todo + '\n'
+
+            with open("todos.txt","w") as file:
+                file.writelines(todos)
+
+        except ValueError:
+            print("Invalid command.")
+
+    elif user_action.startswith("complete"):
         
-        todos[number-1] = new_todo + '\n'
+        try:
+            number = int(user_action[9:])
+            
+            with open("todos.txt","r") as file:
+                todos = file.readlines()
 
-        with open("todos.txt","w") as file:
-            file.writelines(todos)
+            completed_todo = todos.pop(number-1)
 
-    elif 'complete' in user_action:
-        number = int(user_action[-1:])
+            with open("todos.txt","w") as file:
+                file.writelines(todos)
+            
+            print(f"{completed_todo.strip()} is removed from the todo list.")
         
-        with open("todos.txt","r") as file:
-            todos = file.readlines()
+        except ValueError:
+            print("Error in value.")
 
-        completed_todo = todos.pop(number-1)
+        except IndexError:
+            print("Error in Index.")
 
-        with open("todos.txt","w") as file:
-            file.writelines(todos)
-        
-        print(f"{completed_todo.strip()} is removed from the todo list.")
+        except SyntaxError:
+            print("Lol in Syntex")
 
-    elif 'exit' in user_action:
+    elif user_action.startswith("exit"):
         break 
 
     else:
