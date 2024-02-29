@@ -1,23 +1,24 @@
+def get_todos():
+    with open('todos.txt', 'r') as get_file:
+        todos_loc = get_file.readlines()
+    return todos_loc
+
+def set_todos(todos_loc):
+    with open('todos.txt', 'w') as set_file:
+        set_file.writelines(todos_loc)
+
 while True:
     user_action = input("YourNote > ")
     user_action = user_action.strip()
     
     if user_action.startswith("add "):
         todo = user_action[4:]
-    
-        with open('todos.txt', 'r') as file:
-            todos = file.readlines()
-        
+        todos = get_todos()
         todos.append(todo+"\n")
-
-        with open('todos.txt', 'w') as file:
-            file.writelines(todos)
+        set_todos(todos)
 
     elif user_action.startswith("show"):
-
-        with open("todos.txt","r") as file:
-            todos = file.readlines()
-
+        todos = get_todos()
         for todo_id, todo in enumerate(todos):
             print(todo_id+1,"-",todo.strip())
 
@@ -25,31 +26,19 @@ while True:
         try:
             number = int(user_action[5:7])
             new_todo = user_action[7:]
-
-            with open("todos.txt","r") as file:
-                todos = file.readlines()
-            
+            todos = get_todos()
             todos[number-1] = new_todo + '\n'
-
-            with open("todos.txt","w") as file:
-                file.writelines(todos)
+            set_todos(todos)
 
         except ValueError:
             print("Invalid command.")
 
     elif user_action.startswith("complete"):
-        
         try:
             number = int(user_action[9:])
-            
-            with open("todos.txt","r") as file:
-                todos = file.readlines()
-
+            todos = get_todos()
             completed_todo = todos.pop(number-1)
-
-            with open("todos.txt","w") as file:
-                file.writelines(todos)
-            
+            set_todos(todos)
             print(f"{completed_todo.strip()} is removed from the todo list.")
         
         except ValueError:
