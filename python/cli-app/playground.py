@@ -33,22 +33,33 @@ while True:
 
             with open("todos.txt","w") as file:
                 file.writelines(todos)
-                
+
         except ValueError:
             print("Invalid command.")
 
     elif user_action.startswith("complete"):
-        number = int(user_action[-1:])
         
-        with open("todos.txt","r") as file:
-            todos = file.readlines()
+        try:
+            number = int(user_action[9:])
+            
+            with open("todos.txt","r") as file:
+                todos = file.readlines()
 
-        completed_todo = todos.pop(number-1)
+            completed_todo = todos.pop(number-1)
 
-        with open("todos.txt","w") as file:
-            file.writelines(todos)
+            with open("todos.txt","w") as file:
+                file.writelines(todos)
+            
+            print(f"{completed_todo.strip()} is removed from the todo list.")
         
-        print(f"{completed_todo.strip()} is removed from the todo list.")
+        except ValueError:
+            print("Error in value.")
+
+        except IndexError:
+            print("Error in Index.")
+
+        except SyntaxError:
+            print("Lol in Syntex")
 
     elif user_action.startswith("exit"):
         break 
