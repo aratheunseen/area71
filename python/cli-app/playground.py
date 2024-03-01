@@ -1,9 +1,11 @@
 def get_todos(filepath):
+    """ Read a text file and return the list of todos from the file. """
     with open(filepath, 'r') as get_file:
         todos_loc = get_file.readlines()
     return todos_loc
 
 def set_todos(filepath,todos):
+    """ Write the todo items list int the text file. """
     with open(filepath, 'w') as set_file:
         set_file.writelines(todos)
 
@@ -51,7 +53,17 @@ while True:
             print("Lol in Syntex")
 
     elif user_action.startswith("exit"):
-        break 
+        break
+
+    elif user_action.startswith("help "):
+        command = user_action[5:]
+        if command == 'add':
+            print("\n\tType 'add <your_note>' to add a new note.\n")
+        elif command == 'show':
+            print("\n\tType 'show' to view all todo items.\n")
+        elif command == 'edit':
+            print("\n\tType 'edit <number_of_old_todo> <new_note>'" 
+                   " to view all todo items.\n")
 
     else:
         print("Invalid input.")
