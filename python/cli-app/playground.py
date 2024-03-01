@@ -50,7 +50,7 @@ while True:
             print("Error in Index.")
 
         except SyntaxError:
-            print("Lol in Syntex")
+            print("LoL in Syntex")
 
     elif user_action.startswith("exit"):
         break
