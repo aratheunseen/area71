@@ -4,8 +4,8 @@ import PySimpleGUI as sg
 # Declare Variables
 label = sg.Text('To-do(s): ', justification='left', font=('Open Sans', 16), size=(51, 1))
 input = sg.InputText(tooltip='Type a todo', size=(51, 1), background_color='lightgrey', key='todo')
-add_button = sg.Button('Add',size=(14, 1), button_color=('white', 'green'))
-edit_button = sg.Button('Edit',size=(14, 1), button_color=('white', 'darkblue'))
+add_button = sg.Button('Add', size=(14, 1), button_color=('white', 'green'))
+edit_button = sg.Button('Edit', size=(14, 1), button_color=('white', 'darkblue'))
 complete_button = sg.Button('Complete', size=(12, 1), button_color=('white', 'red'))
 
 listbox = sg.Listbox(features.get_todos('todos.txt'), size=(50, 10), key='todos', enable_events=True, background_color='lightgrey', font=('Open Sans', 16))
@@ -54,6 +54,4 @@ while True:
 
     else:
         print('Event not found')
-
 window.close()
-
