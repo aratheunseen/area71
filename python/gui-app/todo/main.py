@@ -28,7 +28,7 @@ while True:
 
     if event == 'todos':
         todos = features.get_todos('todos.txt')
-        val = value['todos'][0]
+        val = value['todos'][0].strip("\n")
         window['todo'].update(value=val)
     
     elif event == "Add":
@@ -41,7 +41,7 @@ while True:
     elif event == 'Edit':
         todos = features.get_todos('todos.txt')
         index = todos.index(value['todos'][0])
-        todos.append(value['todo'] + '\n')
+        todos[index] = value['todo'] + '\n'
         features.set_todos('todos.txt', todos)
         window['todos'].update(values=todos)
 
@@ -56,7 +56,7 @@ while True:
         break
 
     else:
-        continue
+        print('Event not found')
 
 window.close()
 
