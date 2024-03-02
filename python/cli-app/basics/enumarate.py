@@ -1,7 +1,7 @@
 words = ["apple","ball","cat","dog"]
 
 for index, word in enumerate(words):
-    print(f"{index+1}: {words}")
+    print(f"{index+1}: {word}")
 
 print("\n\nEnumerate Analysis:")
 print(enumerate(words))
