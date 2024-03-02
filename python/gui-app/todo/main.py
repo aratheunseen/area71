@@ -24,29 +24,26 @@ window = sg.Window('YourNote', layout, margins=(10, 10), element_justification='
 
 # Event Loop
 while True:
+    todos = features.get_todos('todos.txt')
     event, value = window.read()
 
     if event == 'todos':
-        todos = features.get_todos('todos.txt')
         val = value['todos'][0].strip("\n")
         window['todo'].update(value=val)
     
     elif event == "Add":
-        todos = features.get_todos('todos.txt')
         new_todo = value['todo'] + '\n'
         todos.append(new_todo)
         features.set_todos('todos.txt', todos)
         window['todos'].update(values=todos)
 
     elif event == 'Edit':
-        todos = features.get_todos('todos.txt')
         index = todos.index(value['todos'][0])
         todos[index] = value['todo'] + '\n'
         features.set_todos('todos.txt', todos)
         window['todos'].update(values=todos)
 
     elif event == 'Complete':
-        todos = features.get_todos('todos.txt')
         selected = value['todos'][0]
         todos.remove(selected)
         features.set_todos('todos.txt', todos)
