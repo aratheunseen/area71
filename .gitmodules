@@ -1,0 +1,15 @@
+[submodule "zeds/google-drive-api-test"]
+	path = zeds/google-drive-api-test
+	url = https://github.com/aratheunseen/google-drive-api-test.git
+[submodule "zeds/shadi-profile-explorer"]
+	path = zeds/shadi-profile-explorer
+	url = https://github.com/aratheunseen/shadi-profile-explorer.git
+[submodule "zeds/javascipt-file-reader-and-form2text"]
+	path = zeds/javascipt-file-reader-and-form2text
+	url = https://github.com/aratheunseen/javascipt-file-reader-and-form2text.git
+[submodule "unity-basics"]
+	path = unity-basics
+	url = https://github.com/aratheunseen/unity-basics
+[submodule "unity"]
+	path = unity
+	url = https://github.com/aratheunseen/unity-basics
