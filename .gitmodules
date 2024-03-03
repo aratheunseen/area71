@@ -10,3 +10,6 @@
 [submodule "unity"]
 	path = unity
 	url = https://github.com/aratheunseen/unity-basics
+[submodule "zeds/pentabucks-wordpress-theme"]
+	path = zeds/pentabucks-wordpress-theme
+	url = https://github.com/aratheunseen/pentabucks-wordpress-theme.git
