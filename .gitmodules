@@ -7,9 +7,6 @@
 [submodule "zeds/javascipt-file-reader-and-form2text"]
 	path = zeds/javascipt-file-reader-and-form2text
 	url = https://github.com/aratheunseen/javascipt-file-reader-and-form2text.git
-[submodule "unity-basics"]
-	path = unity-basics
-	url = https://github.com/aratheunseen/unity-basics
 [submodule "unity"]
 	path = unity
 	url = https://github.com/aratheunseen/unity-basics
