@@ -33,25 +33,30 @@ while True:
     
     elif event == "Add":
         new_todo = value['todo'] + '\n'
+        print(value)
         todos.append(new_todo)
         features.set_todos('todos.txt', todos)
         window['todos'].update(values=todos)
+        window['todo'].update(value='')
 
     elif event == 'Edit':
         index = todos.index(value['todos'][0])
         todos[index] = value['todo'] + '\n'
         features.set_todos('todos.txt', todos)
         window['todos'].update(values=todos)
+        window['todo'].update(value='')
 
     elif event == 'Complete':
-        selected = value['todos'][0]
-        todos.remove(selected)
+        select_to_check = value['todos'][0]
+        todos.remove(select_to_check)
         features.set_todos('todos.txt', todos)
         window['todos'].update(values=todos)
+        window['todo'].update(value='')
     
     elif event == sg.WIN_CLOSED:
         break
 
     else:
         print('Event not found')
+        
 window.close()

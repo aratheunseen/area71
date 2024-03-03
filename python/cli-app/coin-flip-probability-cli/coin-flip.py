@@ -16,4 +16,4 @@ while True:
     heads_count = flips.count("head\n")
     percentage = heads_count / len(flips) * 100
 
-    print(f"Heads: {percentage}%")
+    print(f"Probability of Head: {percentage}%")
