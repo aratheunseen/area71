@@ -13,3 +13,6 @@
 [submodule "zeds/pentabucks-wordpress-theme"]
 	path = zeds/pentabucks-wordpress-theme
 	url = https://github.com/aratheunseen/pentabucks-wordpress-theme.git
+[submodule "zeds/python-dhaka-stock-exchange-scraper"]
+	path = zeds/python-dhaka-stock-exchange-scraper
+	url = https://github.com/aratheunseen/python-dhaka-stock-exchange-scraper.git
