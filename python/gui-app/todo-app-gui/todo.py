@@ -1,7 +1,12 @@
-from features import get_todos, set_todos
+from controllers import get_todos, set_todos
 from datetime import datetime
+import os
 
 FILEPATH = 'todos.txt'
+
+if not os.path.exists(FILEPATH):
+    with open(FILEPATH, 'w') as file:
+        pass
 
 while True:
     user_action = input(f"YourNote ({datetime.now().strftime("%H:%M%p")}) > ")
