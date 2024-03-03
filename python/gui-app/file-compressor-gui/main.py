@@ -3,7 +3,7 @@ import ZipMaker
 
 select_file_label = sg.Text('Select Files to Compress:')
 select_filepaths = sg.InputText(key='files')
-files_browse_button = sg.FilesBrowse('Choose')
+file_browse_button = sg.FilesBrowse('Choose')
 
 dest_folder_label = sg.Text('Select Destination Folder:')
 destination_folderpath = sg.InputText(key="destination")
@@ -15,7 +15,7 @@ compress_button = sg.Button('Compress', size=(55,2), button_color=('white', 'gre
 exit_button = sg.Button('Exit', size=(10,2), button_color=('white', 'red'), key='Exit')
 
 layout = [
-    [select_file_label, select_filepaths, files_browse_button],
+    [select_file_label, select_filepaths, file_browse_button],
     [dest_folder_label, destination_folderpath, folder_browse_button],
     [compress_button, exit_button],
     [output_label]

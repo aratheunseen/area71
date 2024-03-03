@@ -1,11 +1,8 @@
-import pathlib
 import zipfile
 
-def make_zipfile(filepaths, destination_dir):
-    destination_dir = pathlib.Path(destination_dir, 'compressed.zip')
-    with zipfile.ZipFile(destination_dir, 'w') as zipf:
-        for filepath in filepaths:
-            zipf.write(filepath)
+def extract_zipfile(filepath, destination_dir):
+    with zipfile.ZipFile(filepath, 'r') as zipf:
+        zipf.extractall(destination_dir)
 
 if __name__ == '__main__':
-    make_zipfile('compressed.zip', 'C:/Users/JohnDoe/Desktop/Files')
+    extract_zipfile('test.zip', 'test')
