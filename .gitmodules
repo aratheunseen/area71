@@ -16,3 +16,6 @@
 [submodule "zeds/python-dhaka-stock-exchange-scraper"]
 	path = zeds/python-dhaka-stock-exchange-scraper
 	url = https://github.com/aratheunseen/python-dhaka-stock-exchange-scraper.git
+[submodule "sqa/mochachai"]
+	path = sqa/mochachai
+	url = https://github.com/aratheunseen/mochachai.git
