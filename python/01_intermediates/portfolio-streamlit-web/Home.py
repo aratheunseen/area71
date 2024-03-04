@@ -16,7 +16,7 @@ with col2:
     st.info(content)
 
 
-st.title('Projects')
+st.title('Projects I created',anchor='projects')
 
 def project_card(title,description,url,image):
     st.image(f'projects/{image}')
@@ -39,3 +39,8 @@ for row in range(0,20,4):
             project_card(df.iloc[row+2,column],df.iloc[row+2,column+1],df.iloc[row+2,column+2],df.iloc[row+2,column+3])
         with col6:
             project_card(df.iloc[row+3,column],df.iloc[row+3,column+1],df.iloc[row+3,column+2],df.iloc[row+3,column+3])
+
+col = st.columns(1)
+
+with col[0]:
+    st.info("© 2024 aratheunseen. All rights reserved.")
