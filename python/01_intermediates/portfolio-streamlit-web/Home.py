@@ -6,7 +6,7 @@ st.set_page_config("Portfolio - Metaverse Creator", "📚", "wide", "auto")
 col1, col2 = st.columns([5,7],gap='large')
 
 with col1:
-    st.image('assets/verse.bmp')
+    st.image('images/verse.bmp')
 
 with col2:
     st.title('Metaverse Creator')
@@ -18,13 +18,24 @@ with col2:
 
 st.title('Projects')
 
-# data = pandas.read_csv('data.csv')
-
 def project_card(title,description,url,image):
-    st.image(image)
+    st.image(f'projects/{image}')
     st.subheader(title)
     st.info(description)
-    st.write('GitHub: [Source Code]('+url+'), [Live Demo](#)')
-
+    st.write('GitHub: [Source Code]('+url+'), [Live Demo]('+url+')')
+    st.write('---')
 
 col3, col4, col5, col6 = st.columns([3,3,3,3],gap='large')
+
+df = pd.read_csv("data.csv",sep=';')
+
+for row in range(0,20,4):
+    for column in range(0,4,4):
+        with col3:
+            project_card(df.iloc[row,column],df.iloc[row,column+1],df.iloc[row,column+2],df.iloc[row,column+3])
+        with col4:
+            project_card(df.iloc[row+1,column],df.iloc[row+1,column+1],df.iloc[row+1,column+2],df.iloc[row+1,column+3])
+        with col5:
+            project_card(df.iloc[row+2,column],df.iloc[row+2,column+1],df.iloc[row+2,column+2],df.iloc[row+2,column+3])
+        with col6:
+            project_card(df.iloc[row+3,column],df.iloc[row+3,column+1],df.iloc[row+3,column+2],df.iloc[row+3,column+3])
