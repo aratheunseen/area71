@@ -32,3 +32,5 @@ for i in range(3):
             member_model(df.iloc[i+4,j],df.iloc[i+4,j+1],df.iloc[i+4,j+2],df.iloc[i+4,j+3])
         with col3:
             member_model(df.iloc[i+8,j],df.iloc[i+8,j+1],df.iloc[i+8,j+2],df.iloc[i+8,j+3])
+        
+st.info("© 2024 aratheunseen. All rights reserved.")
