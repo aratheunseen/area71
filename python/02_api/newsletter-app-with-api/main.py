@@ -8,7 +8,7 @@ end_date = str(datetime.now().strftime("%Y-%m-%d"))
 language = "en"
 
 # Change NewsAPI.org key (Its a sample key)
-api_key = "06f80f04869d4d3db91252eb5c4b319c"
+api_key = "06f80f048654d7f74d5f41252eb5c4b319c"
 url = f"https://newsapi.org/v2/everything?q={topic}&from={start_date}&to={end_date}&language={language}&sortBy=popularity&apiKey={api_key}"
 
 # Make request
