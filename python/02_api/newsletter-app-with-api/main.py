@@ -12,10 +12,10 @@ api_key = "06f80f04869d4d3db91252eb5c4b319c"
 url = f"https://newsapi.org/v2/everything?q={topic}&from={start_date}&to={end_date}&language={language}&sortBy=popularity&apiKey={api_key}"
 
 # Make request
-request = requests.get(url)
+response = requests.get(url)
 
 # Convert to json
-content = request.json()
+content = response.json()
 
 # Access content
 name = "The Newsletter"
