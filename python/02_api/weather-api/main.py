@@ -9,8 +9,8 @@ def home():
 
 @app.route("/api/v1/<station>/<date>")
 def weather_report(station, date):
-    # df = pandas.read_csv("")
-    temperature = 23
+    # df = pandas.read_csv("weather.csv")
+    temperature = 25
     result = {
         "station": station,
         "date": date,
