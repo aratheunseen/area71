@@ -1,6 +1,5 @@
 import cv2
 import time
-import mailer
 
 video = cv2.VideoCapture(1)
 time.sleep(1)
@@ -40,8 +39,11 @@ while True:
     status_list.append(status)
     status_list = status_list[-2:]
 
+    if status_list[0] == 0 and status_list[1] == 1:
+        print("New object detected.")
+
     if status_list[0] == 1 and status_list[1] == 0:
-        mailer.send_email()
+        print("Object goes outside of the frame.")
 
     cv2.imshow("My video", gray_frame_gau)
 
