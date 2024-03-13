@@ -1,8 +1,8 @@
 import pandas as pd
 
-df = pd.read_csv("hotels.csv", dtype={"id":str})
-df_cards = pd.read_csv("cards.csv", dtype=str).to_dict(orient="records")
-df_cards_security = pd.read_csv("card-security.csv", dtype=str)
+df = pd.read_csv("data/hotels.csv", dtype={"id":str})
+df_cards = pd.read_csv("data/cards.csv", dtype=str).to_dict(orient="records")
+df_cards_security = pd.read_csv("data/card-security.csv", dtype=str)
 
 
 class Hotel:
@@ -65,16 +65,29 @@ class SecureCreditCard(CreditCard):
             return True
         else:
             return False
+        
+
+class SpaHotel(ReservationTicket):
+    def generate(self):
+        content = f"""
+        Thank you for your reservation.
+        Here are your SPA booking details:
+        Name: {self.customer_name}
+        Hotel Name: {self.hotel.name}
+        """
+        return content
 
 print(df)
 hotel_id = input("Enter the id oƒ the hotel: ")
 hotel = Hotel(hotel_id)
 
 if hotel.available():
+
     # card_number = input("Enter your credit card number: ")
     # card_exp_date = input("Enter expire date of your card (MM/YY): ")
     # card_holder = input("Enter card holder name: ")
     # card_cvv_code = input("Enter CVV of your card: ")
+
     credit_card = SecureCreditCard(number="12345")
     if credit_card.validate(expiration="12/26",holder="JOHN SMITH",cvc="123"):
         if credit_card.authenticate(entered_password="mypass"):
@@ -82,6 +95,20 @@ if hotel.available():
             name = input("Enter your name: ")
             reservation_ticket = ReservationTicket(customer_name=name, hotel_object=hotel)
             print(reservation_ticket.generate())
+            
+            while True:
+                spa_package = input("Do you want to book a spa package? ")
+                if spa_package == "yes":
+                    spa_hotel = SpaHotel(name, hotel)
+                    print(spa_hotel.generate())
+                    break
+
+                elif spa_package == "no":
+                    print("Thank you. Your Reservation completed.")
+                    break
+
+                else:
+                    print("Invalid Selection. Type yes or no.")
         else:
             print("AuthFailed: There was a problem with your payment.")
     else:
