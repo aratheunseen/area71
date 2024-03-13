@@ -14,6 +14,7 @@ class Article:
         in_stock = df.loc[df['id'] == self.id, 'in stock'].squeeze()
         return in_stock
 
+
 class Receipt:
     def __init__(self, article_id, article_object):
         self.article_id = article_id
