@@ -20,7 +20,7 @@ class Hotel:
 
     def book(self):
         """Book a hotel by changing its availability to no."""
-        df.loc[df["id"] == self.hotel_id, "available"] = "yes"
+        df.loc[df["id"] == self.hotel_id, "available"] = "no"
         df.to_csv("hotels.csv", index=False)
 
 
