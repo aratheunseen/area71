@@ -23,7 +23,7 @@ class Hotel:
     def book(self):
         """Book a hotel by changing its availability to no."""
         df.loc[df["id"] == self.hotel_id, "available"] = "no"
-        df.to_csv("hotels.csv", index=False)
+        df.to_csv("data/hotels.csv", index=False)
 
 
 class ReservationTicket:
@@ -59,15 +59,14 @@ class CreditCard:
 class SecureCreditCard(CreditCard):
     def authenticate(self, entered_password):
         password = df_cards_security.loc[df_cards_security["number"] == self.number, "password"].squeeze()
-        print(password)
-        print(entered_password)
+
         if password == entered_password:
             return True
         else:
             return False
         
 
-class SpaHotel(ReservationTicket):
+class SpaReservationTicket(ReservationTicket):
     def generate(self):
         content = f"""
         Thank you for your reservation.
@@ -99,7 +98,7 @@ if hotel.available():
             while True:
                 spa_package = input("Do you want to book a spa package? ")
                 if spa_package == "yes":
-                    spa_hotel = SpaHotel(name, hotel)
+                    spa_hotel = SpaReservationTicket(name, hotel)
                     print(spa_hotel.generate())
                     break
 
