@@ -27,9 +27,8 @@ class MainWindow(QMainWindow):
         about_action.setMenuRole(QAction.MenuRole.NoRole)
 
         search_action = QAction("Search", self)
-        search_action.triggered.connect(self.search)
         edit_menu_item.addAction(search_action)
-        search_action.setMenuRole(QAction.MenuRole.NoRole)
+        search_action.triggered.connect(self.search)
 
         self.table = QTableWidget()
         self.table.setColumnCount(4)
@@ -61,7 +60,7 @@ class MainWindow(QMainWindow):
 class InsertDialog(QDialog):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Student Management System")
+        self.setWindowTitle("Add Student")
 
         self.setFixedWidth(300)
         self.setFixedHeight(300)
@@ -81,7 +80,7 @@ class InsertDialog(QDialog):
         self.mobile_number.setPlaceholderText("Mobile Number")
         layout.addWidget(self.mobile_number)
 
-        button = QPushButton("Register")
+        button = QPushButton("Add")
         button.clicked.connect(self.add_student)
         layout.addWidget(button)
 
@@ -105,7 +104,7 @@ class InsertDialog(QDialog):
 class SearchDialog(QDialog):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Student Management System")
+        self.setWindowTitle("Search Student")
 
         self.setFixedWidth(300)
         self.setFixedHeight(300)
@@ -124,15 +123,16 @@ class SearchDialog(QDialog):
 
     def search(self):
 
-        keyword = self.search_keyword.text()
+        name = self.search_keyword.text()
 
         connection = sqlite3.connect("database.db")
         cursor = connection.cursor()
-        result = cursor.execute("SELECT * FROM students WHERE name=?", (keyword,))
-        rows = list(result)
-        items = student_management_system.table.findItems(keyword, Qt.MatchFlag.MatchFixedString)
+        result = cursor.execute("SELECT * FROM students WHERE name = ?", (name,))
+
+        items = student_management_system.table.findItems(name, Qt.MatchFlag.MatchFixedString)
         for item in items:
             student_management_system.table.item(item.row(), 1).setSelected(True)
+            
         cursor.close()
         connection.close()
         student_management_system.load_data()
