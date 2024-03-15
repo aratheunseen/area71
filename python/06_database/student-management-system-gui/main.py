@@ -112,7 +112,7 @@ class SearchDialog(QDialog):
         layout = QVBoxLayout()
 
         self.search_keyword = QLineEdit()
-        self.search_keyword.setPlaceholderText("Enter ID, Name or Mobile Number")
+        self.search_keyword.setPlaceholderText("Enter Student Name")
         layout.addWidget(self.search_keyword)
 
         button = QPushButton("Search")
@@ -132,10 +132,9 @@ class SearchDialog(QDialog):
         items = student_management_system.table.findItems(name, Qt.MatchFlag.MatchFixedString)
         for item in items:
             student_management_system.table.item(item.row(), 1).setSelected(True)
-            
+
         cursor.close()
         connection.close()
-        student_management_system.load_data()
 
 app = QApplication(sys.argv)
 
