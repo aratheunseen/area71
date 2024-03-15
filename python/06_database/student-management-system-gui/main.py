@@ -117,12 +117,12 @@ class SearchDialog(QDialog):
         layout.addWidget(self.search_keyword)
 
         button = QPushButton("Search")
-        button.clicked.connect(self.add_student)
+        button.clicked.connect(self.search)
         layout.addWidget(button)
 
         self.setLayout(layout)
 
-    def add_student(self):
+    def search(self):
 
         name = self.student_name.text()
         course = self.course_name.itemText(self.course_name.currentIndex())
