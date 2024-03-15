@@ -15,7 +15,7 @@ class MainWindow(QMainWindow):
         self.setMinimumHeight(500)
 
         file_menu_item = self.menuBar().addMenu("&File")
-        search_menu_item = self.menuBar().addMenu("&HEdit")
+        search_menu_item = self.menuBar().addMenu("&Edit")
         help_menu_item = self.menuBar().addMenu("&Help")
         
         add_student_action = QAction("Add Student", self)
