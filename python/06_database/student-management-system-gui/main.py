@@ -97,9 +97,6 @@ class InsertDialog(QDialog):
         connection.close()
         student_management_system.load_data()
 
-
-
-
 app = QApplication(sys.argv)
 
 student_management_system = MainWindow()
