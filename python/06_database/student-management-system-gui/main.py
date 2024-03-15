@@ -33,7 +33,7 @@ class MainWindow(QMainWindow):
 
         self.table = QTableWidget()
         self.table.setColumnCount(4)
-        self.table.setHorizontalHeaderLabels(("Id", "Name", "Course", "Mobile"))
+        self.table.setHorizontalHeaderLabels(("ID", "Name", "Course", "Mobile"))
         self.table.verticalHeader().setVisible(False)
 
         self.setCentralWidget(self.table)
@@ -51,6 +51,10 @@ class MainWindow(QMainWindow):
 
     def insert(self):
         dialog = InsertDialog()
+        dialog.exec()
+
+    def search(self):
+        dialog = SearchDialog()
         dialog.exec()
 
 
@@ -78,6 +82,41 @@ class InsertDialog(QDialog):
         layout.addWidget(self.mobile_number)
 
         button = QPushButton("Register")
+        button.clicked.connect(self.add_student)
+        layout.addWidget(button)
+
+        self.setLayout(layout)
+
+    def add_student(self):
+
+        name = self.student_name.text()
+        course = self.course_name.itemText(self.course_name.currentIndex())
+        mobile = self.mobile_number.text()
+
+        connection = sqlite3.connect("database.db")
+        cursor = connection.cursor()
+        cursor.execute("INSERT INTO students (name, course, mobile) VALUES (?, ?, ?)",
+                       (name, course, mobile))
+        connection.commit()
+        cursor.close()
+        connection.close()
+        student_management_system.load_data()
+
+class SearchDialog(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Student Management System")
+
+        self.setFixedWidth(300)
+        self.setFixedHeight(300)
+
+        layout = QVBoxLayout()
+
+        self.search_keyword = QLineEdit()
+        self.search_keyword.setPlaceholderText("Enter ID, Name or Mobile Number")
+        layout.addWidget(self.search_keyword)
+
+        button = QPushButton("Search")
         button.clicked.connect(self.add_student)
         layout.addWidget(button)
 
