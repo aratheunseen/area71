@@ -28,7 +28,7 @@ class MainWindow(QMainWindow):
 
         search_action = QAction("Search", self)
         search_menu_item.addAction(search_action)
-        about_action.setMenuRole(QAction.MenuRole.NoRole)
+        search_action.setMenuRole(QAction.MenuRole.NoRole)
 
         self.table = QTableWidget()
         self.table.setColumnCount(4)
