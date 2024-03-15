@@ -27,6 +27,7 @@ class MainWindow(QMainWindow):
         about_action.setMenuRole(QAction.MenuRole.NoRole)
 
         search_action = QAction("Search", self)
+        search_action.triggered.connect(self.search)
         search_menu_item.addAction(search_action)
         search_action.setMenuRole(QAction.MenuRole.NoRole)
 
