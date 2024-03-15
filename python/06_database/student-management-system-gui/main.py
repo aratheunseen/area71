@@ -25,6 +25,8 @@ class MainWindow(QMainWindow):
         self.table.verticalHeader().setVisible(False)
 
         self.setCentralWidget(self.table)
+        
+        self.load_data()
 
     def load_data(self):
         connection = sqlite3.connect("database.db")
