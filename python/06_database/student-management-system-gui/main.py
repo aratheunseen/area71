@@ -15,7 +15,7 @@ class MainWindow(QMainWindow):
         self.setMinimumHeight(500)
 
         file_menu_item = self.menuBar().addMenu("&File")
-        search_menu_item = self.menuBar().addMenu("&Edit")
+        edit_menu_item = self.menuBar().addMenu("&Edit")
         help_menu_item = self.menuBar().addMenu("&Help")
         
         add_student_action = QAction("Add Student", self)
@@ -28,7 +28,7 @@ class MainWindow(QMainWindow):
 
         search_action = QAction("Search", self)
         search_action.triggered.connect(self.search)
-        search_menu_item.addAction(search_action)
+        edit_menu_item.addAction(search_action)
         search_action.setMenuRole(QAction.MenuRole.NoRole)
 
         self.table = QTableWidget()
@@ -124,15 +124,15 @@ class SearchDialog(QDialog):
 
     def search(self):
 
-        name = self.student_name.text()
-        course = self.course_name.itemText(self.course_name.currentIndex())
-        mobile = self.mobile_number.text()
+        keyword = self.search_keyword.text()
 
         connection = sqlite3.connect("database.db")
         cursor = connection.cursor()
-        cursor.execute("INSERT INTO students (name, course, mobile) VALUES (?, ?, ?)",
-                       (name, course, mobile))
-        connection.commit()
+        result = cursor.execute("SELECT * FROM students WHERE name=?", (keyword,))
+        rows = list(result)
+        items = student_management_system.table.findItems(keyword, Qt.MatchFlag.MatchFixedString)
+        for item in items:
+            student_management_system.table.item(item.row(), 1).setSelected(True)
         cursor.close()
         connection.close()
         student_management_system.load_data()
