@@ -24,18 +24,7 @@ class MainWindow(QMainWindow):
         self.table.setHorizontalHeaderLabels(("Id", "Name", "Course", "Mobile"))
         self.table.verticalHeader().setVisible(False)
 
-        # self.data = QTableWidget()
-        # self.data.setColumnCount(4)
-        # print(self.load_data()[0])
-        # self.table.setHorizontalHeaderItem(tuple(map(str,self.load_data()[0])))
-
-        # data = self.load_data()
-        # for rows in data:
-        #     self.table.setHorizontalHeaderItem(self, )
-
         self.setCentralWidget(self.table)
-        
-        # self.load_data()
 
     def load_data(self):
         connection = sqlite3.connect("database.db")
