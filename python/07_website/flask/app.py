@@ -40,11 +40,8 @@ def home():
         db.session.commit()
 
         message_body = """
-
-            Enter your mail body here.
-        
-
-        """
+Enter your mail body here.
+"""
 
         message = Message(subject="",
                           sender="",
