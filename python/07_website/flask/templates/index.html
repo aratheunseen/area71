@@ -84,6 +84,13 @@
 
         </div>
         <button class="btn btn-primary form-control">Submit</button>
+        {% with messages == get_flashed_messages() %}
+        {% if messages %}
+        <div>
+          ddd
+        </div>
+        {% endif %}
+        {% endwith %}
       </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
